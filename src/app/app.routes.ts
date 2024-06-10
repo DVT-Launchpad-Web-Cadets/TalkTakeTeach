@@ -10,8 +10,13 @@ export const routes: Routes = [
     component: ChatComponent
   },
   {
-    path: "",
+    path: "home",
     component: HomeComponent
+  },
+  {
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full"
   },
   {
     path: '**',
