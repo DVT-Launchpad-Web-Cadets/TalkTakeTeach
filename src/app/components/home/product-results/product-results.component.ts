@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import ProductInterface from '../../../interfaces/products';
 
 @Component({
@@ -9,10 +9,6 @@ import ProductInterface from '../../../interfaces/products';
   templateUrl: './product-results.component.html',
   styleUrl: './product-results.component.scss',
 })
-export class ProductResultsComponent implements OnInit {
+export class ProductResultsComponent {
   @Input() products: ProductInterface[] = [];
-
-  ngOnInit(): void {
-    // console.log(this.products);
-  }
 }
