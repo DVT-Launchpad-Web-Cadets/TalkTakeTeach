@@ -1,22 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import ProductInterface from '../../../interfaces/products';
 import { ProductsService } from '../../../services/products.service';
-import { AsyncPipe, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [ReactiveFormsModule, AsyncPipe, NgFor],
+  imports: [ReactiveFormsModule, AsyncPipe, NgFor, NgIf],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   searchValue: string = '';
   products: ProductInterface[] = [];
+  debounceTime = 300;
+  isFocused: boolean = false;
   searchForm = this.fb.nonNullable.group({
     searchValue: '',
   });
+
+  trigger = this.searchForm.controls.searchValue.valueChanges.pipe(
+    debounceTime(this.debounceTime),
+    distinctUntilChanged()
+  );
+
+  subscriptions: Subscription[] = [];
 
   constructor(
     private productsService: ProductsService,
@@ -24,20 +35,30 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const sub = this.searchForm.controls.searchValue.valueChanges
+      .pipe(debounceTime(this.debounceTime), distinctUntilChanged())
+      .subscribe((currentValue) => {
+        this.searchValue = currentValue;
+        this.fetchData();
+      });
+
+    this.subscriptions.push(sub);
     this.fetchData();
   }
 
   fetchData() {
-    this.productsService
-      .getProducts('searchValue')
-      .subscribe((productsData) => {
-        console.log(productsData);
-        this.products = productsData;
-      });
+    // this.productsService
+    //   .getProducts(this.searchValue)
+    //   .subscribe((productsData) => {
+    //     this.products = productsData;
+    //   });
   }
 
-  onSearchSubmit() {
-    this.searchValue = this.searchForm.value.searchValue ?? '';
-    this.fetchData();
+  clearInput() {
+    this.searchForm.controls.searchValue.setValue('');
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 }

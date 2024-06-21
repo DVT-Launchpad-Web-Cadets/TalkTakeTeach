@@ -5,7 +5,8 @@ export default interface ProductInterface {
   brand?: string;
   brandLink?: string;
   productLink: string;
-  rating: number;
+  rating?: number;
+  numberOfReviews?: number;
   price: number;
   salePrice?: number;
 }

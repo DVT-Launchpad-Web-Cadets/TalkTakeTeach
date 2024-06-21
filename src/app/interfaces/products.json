@@ -1,0 +1,157 @@
+[
+  {
+    "id": "1",
+    "name": "NIVEA Q10 3in1 Anti-age Hand Cream, 75ml",
+    "imageUrl": "https://media.takealot.com/covers_images/d9b25a4812374adfb337a1f428c23709/s-fb.file",
+    "productLink": "https://www.takealot.com/nivea-q10-3in1-anti-age-hand-cream-75ml/PLID32538083",
+    "price": 61,
+    "salePrice": 45,
+    "brand": "NIVEA",
+    "brandLink": "https://www.takealot.com/all?filter=Brand:NIVEA",
+    "rating": 4.7,
+    "numberOfReviews": 345
+  },
+  {
+    "id": "2",
+    "name": "Swimming Goggles XBase - Clear Lenses - Kids' Size",
+    "imageUrl": "https://media.takealot.com/covers_images/18982aa1828d4f9ab71b96293021c6c3/s-fb.file",
+    "productLink": "https://www.takealot.com/swimming-goggles-xbase-clear-lenses-kids-size/PLID95697708",
+    "price": 99,
+    "brand": "Nabaiji",
+    "brandLink": "https://www.takealot.com/all?filter=Brand:Nabaiji"
+  },
+  {
+    "id": "3",
+    "name": "The Ordinary Niacinamide 10% + Zinc 1% 30ml",
+    "imageUrl": "https://media.takealot.com/covers_images/7f56e525cb7a4b939523f5c3d74ed449/s-fb.file",
+    "productLink": "https://www.takealot.com/the-ordinary-niacinamide-10-zinc-1-30ml/PLID93202017",
+    "price": 130,
+    "brand": "The Ordinary",
+    "brandLink": "https://www.takealot.com/all?filter=Brand:The%20Ordinary",
+    "rating": 4.5,
+    "numberOfReviews": 975
+  },
+  {
+    "id": "4",
+    "name": "Vitamin C, Retinol and Hyaluronic Acid Serum - Complete Skincare Solution",
+    "imageUrl": "https://media.takealot.com/covers_images/cbca345f1e224b829d5a4aac45c118a0/s-fb.file",
+    "productLink": "https://www.takealot.com/vitamin-c-retinol-and-hyaluronic-acid-serum-complete-skincare-solution/PLID72475683",
+    "price": 131,
+    "salePrice": 72,
+    "rating": 4.4,
+    "numberOfReviews": 3906
+  },
+  {
+    "id": "5",
+    "name": "500ml Smart Thermos Water Bottle and Coffee Flask with Temperature Display",
+    "imageUrl": "https://media.takealot.com/covers_images/2e56119d39334777ad200e6456292c91/s-fb.file",
+    "productLink": "https://www.takealot.com/500ml-smart-thermos-water-bottle-and-coffee-flask-with-temperature-display/PLID72153447",
+    "price": 120,
+    "rating": 3.8,
+    "numberOfReviews": 352
+  },
+  {
+    "id": "6",
+    "name": "Professional Hair Clipper USB Charger Electric Hair Trimmer Men Razor",
+    "imageUrl": "https://media.takealot.com/covers_images/63b91c4106dd4334a8707272e1cbeb23/s-fb.file",
+    "productLink": "https://www.takealot.com/professional-hair-clipper-usb-charger-electric-hair-trimmer-men-razor/PLID72481149",
+    "price": 85,
+    "rating": 4.3,
+    "numberOfReviews": 3740
+  },
+  {
+    "id": "7",
+    "name": "Birdguard Bird Spikes 1m (3pcs make 1m)",
+    "imageUrl": "https://media.takealot.com/covers_images/855694f2d9b645b38c57086ce166e3cd/s-fb.file",
+    "productLink": "https://www.takealot.com/birdguard-bird-spikes-1m-3pcs-make-1m/PLID54632735",
+    "price": 179,
+    "brand": "Birdguard",
+    "brandLink": "https://www.takealot.com/all?filter=Brand:Birdguard",
+    "rating": 4.8,
+    "numberOfReviews": 86
+  },
+  {
+    "id": "8",
+    "name": "Petite Le Nto Spray Mist Bottle (300ML)",
+    "imageUrl": "https://media.takealot.com/covers_images/6d5d165cb8c04be991e3c7ec08ebf198/s-fb.file",
+    "productLink": "https://www.takealot.com/petite-le-nto-spray-mist-bottle-300ml/PLID91673790",
+    "price": 194,
+    "brand": "Petite Le Nto",
+    "brandLink": "https://www.takealot.com/all?filter=Brand:Petite%20Le%20Nto",
+    "rating": 4.3,
+    "numberOfReviews": 40
+  },
+  {
+    "id": "9",
+    "name": "The Ordinary Glycolic Acid 7% Exfoliating Toner 100ml",
+    "imageUrl": "https://media.takealot.com/covers_images/717362e6d5a349328cce7b80185a82d3/s-fb.file",
+    "productLink": "https://www.takealot.com/the-ordinary-glycolic-acid-7-exfoliating-toner-100ml/PLID94971352",
+    "price": 180,
+    "brand": "The Ordinary",
+    "brandLink": "https://www.takealot.com/all?filter=Brand:The%20Ordinary",
+    "rating": 4.7,
+    "numberOfReviews": 166
+  },
+  {
+    "id": "10",
+    "name": "8L Stylish Design Air Fryer",
+    "imageUrl": "https://media.takealot.com/covers_images/5fcf9af5e4e14ec4b2364a6660d0f138/s-fb.file",
+    "productLink": "https://www.takealot.com/8l-stylish-design-air-fryer/PLID93002758",
+    "price": 1,
+    "salePrice": 739,
+    "rating": 4.6,
+    "numberOfReviews": 661
+  },
+  {
+    "id": "11",
+    "name": "Reinol Hand Cleaner",
+    "imageUrl": "https://media.takealot.com/covers_images/1ef67937919d466fbb14bc7e421dfa6a/s-fb.file",
+    "productLink": "https://www.takealot.com/reinol-hand-cleaner/PLID90329155",
+    "price": 95,
+    "brand": "Reinol",
+    "brandLink": "https://www.takealot.com/all?filter=Brand:Reinol",
+    "rating": 5,
+    "numberOfReviews": 7
+  },
+  {
+    "id": "12",
+    "name": "Hair Inhibitor, Painless Hair Growth Stop Spray, Hair Removal Spray",
+    "imageUrl": "https://media.takealot.com/covers_images/03feb31510724730b4d506900a02cb6f/s-fb.file",
+    "productLink": "https://www.takealot.com/hair-inhibitor-painless-hair-growth-stop-spray-hair-removal-spray/PLID91545406",
+    "price": 229,
+    "salePrice": 119,
+    "brand": "Vivostar",
+    "brandLink": "https://www.takealot.com/all?filter=Brand:Vivostar",
+    "rating": 3.6,
+    "numberOfReviews": 26
+  },
+  {
+    "id": "13",
+    "name": "T500 Smartwatch and Fitness Tracker",
+    "imageUrl": "https://media.takealot.com/covers_images/5af19468e5df46c49dbaff2e5bb286bb/s-fb.file",
+    "productLink": "https://www.takealot.com/t500-smartwatch-and-fitness-tracker/PLID72545490",
+    "price": 173,
+    "rating": 3.5,
+    "numberOfReviews": 1989
+  },
+  {
+    "id": "14",
+    "name": "Various Amounts Of Marker Pen Set,Double Tipped Alcohol Art Markers",
+    "imageUrl": "https://media.takealot.com/covers_images/5f457fd1f1024fd7abfa1ed231cb03d2/s-fb.file",
+    "productLink": "https://www.takealot.com/various-amounts-of-marker-pen-set-double-tipped-alcohol-art-markers/PLID90875751",
+    "price": 89,
+    "brand": "ATOUCHTOTHEWORLD",
+    "brandLink": "https://www.takealot.com/all?filter=Brand:ATOUCHTOTHEWORLD",
+    "rating": 4.5,
+    "numberOfReviews": 582
+  },
+  {
+    "id": "15",
+    "name": "Multi-Function Adjustable Spanner Universal Wrench",
+    "imageUrl": "https://media.takealot.com/covers_images/45a2c2cf1a0c40b8a225d3f4e352b6a7/s-fb.file",
+    "productLink": "https://www.takealot.com/multi-function-adjustable-spanner-universal-wrench/PLID72620465",
+    "price": 69,
+    "rating": 4.2,
+    "numberOfReviews": 3203
+  }
+]

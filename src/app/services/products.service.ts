@@ -10,8 +10,10 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getProducts(searchValue: string): Observable<ProductInterface[]> {
-    // return this.http.get(`https://api.github.com/search/repositories?q=${searchValue}`);
-    return EMPTY;
+    return this.http.get(`../interfaces/products.json`) as Observable<
+      ProductInterface[]
+    >;
+    // return EMPTY;
     //this is where the call to backend for products will be
   }
 }
