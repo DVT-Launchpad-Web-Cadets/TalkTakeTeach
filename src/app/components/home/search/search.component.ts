@@ -47,11 +47,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    // this.productsService
-    //   .getProducts(this.searchValue)
-    //   .subscribe((productsData) => {
-    //     this.products = productsData;
-    //   });
+    this.productsService
+      .getProducts(this.searchValue)
+      .subscribe((productsData) => {
+        this.products = productsData;
+      });
+
+    console.log(this.products);
   }
 
   clearInput() {
