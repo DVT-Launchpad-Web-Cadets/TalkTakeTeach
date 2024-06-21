@@ -1,4 +1,4 @@
-<div>
+<div class="h-full mb-5">
   <form [formGroup]="searchForm" class="w-full flex justify-center my-10">
     <label
       class="input input-bordered rounded-full flex items-center gap-2 w-full lg:w-1/2 mx-5 relative"
@@ -40,7 +40,5 @@
       </svg>
     </label>
   </form>
-  <div *ngFor="let product of products">
-    <!-- Render product details here -->
-  </div>
+  <app-product-results [products]="products" />
 </div>

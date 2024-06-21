@@ -1,15 +1,16 @@
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import ProductInterface from '../../../interfaces/products';
 import { ProductsService } from '../../../services/products.service';
+import { ProductResultsComponent } from '../product-results/product-results.component';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [ReactiveFormsModule, AsyncPipe, NgFor, NgIf],
+  imports: [ReactiveFormsModule, AsyncPipe, NgIf, ProductResultsComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
@@ -47,13 +48,20 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
+    //this is what we use for the actual API call
+    // this.productsService
+    //   .getProducts(this.searchValue)
+    //   .subscribe((productsData) => {
+    //     this.products = productsData;
+    //   });
+
     this.productsService
       .getProducts(this.searchValue)
       .subscribe((productsData) => {
-        this.products = productsData;
+        this.products = productsData.filter((product) =>
+          product.name.toLowerCase().includes(this.searchValue.toLowerCase())
+        );
       });
-
-    console.log(this.products);
   }
 
   clearInput() {

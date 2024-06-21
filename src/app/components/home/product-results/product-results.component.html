@@ -1,1 +1,82 @@
-<p>product-results works!</p>
+<div class="h-full px-5">
+  <div class="grid grid-cols-2 gap-5">
+    @for (product of products; track product.id) {
+    <div class="rounded-xl border border-gray-300 max-h-[335px]">
+      <div class="h-1/2 flex justify-center relative">
+        @if (product.rating){
+        <div class="absolute right-2 top-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="#FFD700"
+          >
+            <path
+              d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"
+              style="stroke-linejoin: round; stroke-width: 2; stroke: #ffd700"
+            />
+            <text
+              x="12"
+              y="16"
+              text-anchor="middle"
+              fill="#3c3b39"
+              font-size="8"
+              font-family="Arial"
+              font-weight="bold"
+            >
+              {{ product.rating.toFixed(1) }}
+            </text>
+          </svg>
+        </div>
+        }
+
+        <img
+          [src]="product.imageUrl || 'https://via.placeholder.com/150'"
+          alt="product"
+          class="h-full w-auto object-cover rounded-xl"
+        />
+      </div>
+      <div class="h-1/2 p-2 flex flex-col justify-end">
+        <label
+          class="block text-md font-bold max-w-full px-1 overflow-hidden overflow-ellipsis whitespace-nowrap"
+          >{{ product.name }}</label
+        >
+        <div class="flex justify-between flex-wrap items-center px-1">
+          @if (product.salePrice && product.salePrice < product.price) {
+          <div class="flex items-center gap-2">
+            <label class="text-sm text-gray-500 line-through"
+              >R{{ product.price }}</label
+            >
+            <label class="text-sm text-red-500 font-bold"
+              >R{{ product.salePrice }}</label
+            >
+          </div>
+          } @else {
+          <label class="text-sm text-gray-500 font-bold"
+            >R{{ product.price }}</label
+          >
+          }
+          <a
+            href="{{ product.brandLink }}"
+            class="max-w-full overflow-hidden overflow-ellipsis whitespace-nowrap text-sm text-sky-600 font-semibold"
+            >{{ product.brand }}</a
+          >
+        </div>
+        <a
+          href="{{ product.productLink }}"
+          class="btn bg-sky-600 w-full mt-2 text-white"
+          >View</a
+        >
+        @if (product.rating && product.numberOfReviews){
+        <span class="text-xs self-center mt-1 opacity-65"
+          >({{ product.numberOfReviews }}) reviews</span
+        >
+        } @else {
+        <span class="text-xs self-center mt-1 opacity-65">(No reviews)</span>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</div>
