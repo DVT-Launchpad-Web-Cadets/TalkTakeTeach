@@ -12,7 +12,7 @@
         (blur)="isFocused = false"
       />
       <svg
-        *ngIf="!isFocused"
+        *ngIf="searchForm.value.searchValue === '' && !isFocused"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"
         fill="currentColor"
@@ -25,7 +25,7 @@
         />
       </svg>
       <svg
-        *ngIf="searchForm.value.searchValue || isFocused"
+        *ngIf="searchForm.value.searchValue !== '' || isFocused"
         (click)="clearInput()"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"
