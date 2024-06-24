@@ -32,9 +32,11 @@
         }
 
         <img
-          [ngSrc]="product.imageUrl || 'https://via.placeholder.com/150'"
+          ngSrc="{{ product.imageUrl || 'https://via.placeholder.com/150' }}"
           alt="product"
           class="h-full w-auto object-cover rounded-xl"
+          width="150"
+          height="150"
         />
       </div>
       <div class="h-1/2 p-2 flex flex-col justify-end">
