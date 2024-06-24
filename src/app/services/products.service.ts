@@ -13,6 +13,7 @@ export class ProductsService {
 
   getProducts(searchValue: string): Observable<ProductInterface[]> {
     return this.http.get<ProductInterface[]>(this.baseUrl);
+    //actual call that will be made:
     // return this.http.get<ProductInterface[]>(`${this.baseUrl}?search=${searchValue}`);
   }
 }
