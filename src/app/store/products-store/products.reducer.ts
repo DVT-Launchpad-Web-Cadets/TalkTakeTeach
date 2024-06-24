@@ -6,30 +6,30 @@ import {
   searchProductsSuccess,
 } from './products.actions';
 
+export const productsFeatureKey = 'Products';
+
 export interface ProductState {
   products: ProductInterface[];
-  searchValue: string;
   error: string | null;
   status: 'idle' | 'loading' | 'success' | 'failure';
 }
 
 export const initialState: ProductState = {
   products: [],
-  searchValue: '',
   error: null,
   status: 'idle',
 };
 
 export const productsReducer = createReducer(
   initialState,
-  on(searchProducts, (state, { searchValue }) => ({
+  on(searchProducts, (state) => ({
     ...state,
-    searchValue,
     status: 'loading' as const,
   })),
   on(searchProductsSuccess, (state, { products }) => ({
     ...state,
     products,
+    error: null,
     status: 'success' as const,
   })),
   on(searchProductsFailure, (state, { error }) => ({

@@ -41,5 +41,5 @@
       }
     </label>
   </form>
-  <app-product-results [products]="products" />
+  <app-product-results [products]="allProducts$ | async" />
 </div>
