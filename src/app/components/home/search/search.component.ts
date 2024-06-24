@@ -56,7 +56,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.store.dispatch(searchProducts({ searchValue: this.searchValue }));
 
     //this is ugly, remember to remove once backend endpoint is established
-    console.log(
+    console.warn(
       'Remember you have a useless filter function in search.component.ts that needs to be removed.'
     );
     this.allProducts$ = this.allProducts$.pipe(
