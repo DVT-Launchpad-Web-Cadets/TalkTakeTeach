@@ -11,8 +11,8 @@
         (focus)="isFocused = true"
         (blur)="isFocused = false"
       />
+      @if (searchForm.value.searchValue === '' && !isFocused){
       <svg
-        *ngIf="searchForm.value.searchValue === '' && !isFocused"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"
         fill="currentColor"
@@ -24,8 +24,8 @@
           clip-rule="evenodd"
         />
       </svg>
+      } @if (searchForm.value.searchValue !== '' || isFocused) {
       <svg
-        *ngIf="searchForm.value.searchValue !== '' || isFocused"
         (click)="clearInput()"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 16 16"
@@ -38,6 +38,7 @@
           clip-rule="evenodd"
         />
       </svg>
+      }
     </label>
   </form>
   <app-product-results [products]="products" />

@@ -1,11 +1,11 @@
-import { NgFor, NgIf } from '@angular/common';
+import { CurrencyPipe, DecimalPipe, NgOptimizedImage } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import ProductInterface from '../../../interfaces/products';
 
 @Component({
   selector: 'app-product-results',
   standalone: true,
-  imports: [NgIf, NgFor],
+  imports: [CurrencyPipe, DecimalPipe, NgOptimizedImage],
   templateUrl: './product-results.component.html',
   styleUrl: './product-results.component.scss',
 })

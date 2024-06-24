@@ -15,10 +15,10 @@ import { ProductResultsComponent } from '../product-results/product-results.comp
   styleUrl: './search.component.scss',
 })
 export class SearchComponent implements OnInit, OnDestroy {
-  searchValue: string = '';
+  searchValue = '';
   products: ProductInterface[] = [];
   debounceTime = 300;
-  isFocused: boolean = false;
+  isFocused = false;
   searchForm = this.fb.nonNullable.group({
     searchValue: '',
   });
@@ -55,13 +55,15 @@ export class SearchComponent implements OnInit, OnDestroy {
     //     this.products = productsData;
     //   });
 
-    this.productsService
+    const prodSub = this.productsService
       .getProducts(this.searchValue)
       .subscribe((productsData) => {
         this.products = productsData.filter((product) =>
           product.name.toLowerCase().includes(this.searchValue.toLowerCase())
         );
       });
+
+    this.subscriptions.push(prodSub);
   }
 
   clearInput() {
