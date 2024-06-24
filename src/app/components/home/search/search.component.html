@@ -1,0 +1,45 @@
+<div class="h-full mb-5">
+  <form [formGroup]="searchForm" class="w-full flex justify-center my-10">
+    <label
+      class="input input-bordered rounded-full flex items-center gap-2 w-full lg:w-1/2 mx-5 relative"
+    >
+      <input
+        type="text"
+        class="grow"
+        placeholder="Search"
+        formControlName="searchValue"
+        (focus)="isFocused = true"
+        (blur)="isFocused = false"
+      />
+      @if (searchForm.value.searchValue === '' && !isFocused){
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        class="w-5 h-5 opacity-70"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      } @if (searchForm.value.searchValue !== '' || isFocused) {
+      <svg
+        (click)="clearInput()"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        class="w-6 h-6 opacity-70 cursor-pointer absolute right-4"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      }
+    </label>
+  </form>
+  <app-product-results [products]="products" />
+</div>
