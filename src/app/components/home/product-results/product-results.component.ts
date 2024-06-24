@@ -1,5 +1,5 @@
 import { CurrencyPipe, DecimalPipe, NgOptimizedImage } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import ProductInterface from '../../../interfaces/products';
 
 @Component({
@@ -10,5 +10,5 @@ import ProductInterface from '../../../interfaces/products';
   styleUrl: './product-results.component.scss',
 })
 export class ProductResultsComponent {
-  @Input() products: ProductInterface[] = [];
+  @Input() products: ProductInterface[] | null | undefined = [];
 }

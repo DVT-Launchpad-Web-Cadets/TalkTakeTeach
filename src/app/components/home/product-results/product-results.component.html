@@ -82,4 +82,9 @@
     </div>
     }
   </div>
+  @if (products?.length === 0) {
+  <div class="h-full flex justify-center items-center">
+    <label class="text-lg text-gray-500">No products found</label>
+  </div>
+  }
 </div>
