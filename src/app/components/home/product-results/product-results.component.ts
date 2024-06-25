@@ -10,5 +10,5 @@ import ProductInterface from '../../../interfaces/products';
   styleUrl: './product-results.component.scss',
 })
 export class ProductResultsComponent {
-  @Input() products: ProductInterface[] | null | undefined = [];
+  @Input() products: ProductInterface[] = [];
 }
