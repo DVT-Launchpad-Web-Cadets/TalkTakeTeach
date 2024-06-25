@@ -12,6 +12,7 @@ export class ChatComponent implements OnInit {
   private isBrowser: boolean;
 
   socket: WebSocket | undefined;
+  numOfUsers = 0;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -64,34 +65,55 @@ export class ChatComponent implements OnInit {
   }
 
   addMessage(message: IMessage) {
-    const el = document.createElement('h3');
+    const messagesEl = document.getElementById('messages') as HTMLDivElement;
 
     if (message.username == undefined) {
-      el.appendChild(document.createTextNode(message.text));
+      const notificationEl = document.createElement('div');
+      notificationEl.classList.add('alert');
+      notificationEl.classList.add('alert-info');
+      notificationEl.classList.add('text-sm');
+      notificationEl.classList.add('p-1');
+      notificationEl.classList.add('m-1');
+      notificationEl.classList.add('w-2/3');
+      notificationEl.classList.add('self-center');
+
+      const notificationTextEl = document.createElement('span');
+      notificationTextEl.innerText = message.text;
+      notificationEl.appendChild(notificationTextEl);
+
+      messagesEl.appendChild(notificationEl);
     } else {
-      el.appendChild(
-        document.createTextNode(message.username + ': ' + message.text)
-      );
+      const chatBubbleEl = document.createElement('div');
+      chatBubbleEl.classList.add('chat');
+      chatBubbleEl.classList.add('chat-start');
+
+      const chatBubbleHeader = document.createElement('div');
+      chatBubbleHeader.classList.add('chat-header');
+      chatBubbleHeader.innerText = message.username;
+
+      const date = new Date(message.timestamp);
+      const time = `${date.getHours().toString().padStart(2, '0')}:${date
+        .getMinutes()
+        .toString()
+        .padStart(2, '0')}`;
+      const timeEl = document.createElement('time');
+      timeEl.innerText = time;
+
+      chatBubbleHeader.appendChild(timeEl);
+
+      const chatText = document.createElement('div');
+      chatText.classList.add('chat-bubble');
+      chatText.innerText = message.text;
+
+      chatBubbleEl.appendChild(chatBubbleHeader);
+      chatBubbleEl.appendChild(chatText);
+
+      messagesEl.appendChild(chatBubbleEl);
     }
 
     // Scroll to bottom of messages element
-    const messagesEl = document.getElementById('messages') as HTMLDivElement;
-    messagesEl.appendChild(el);
     messagesEl.scrollTo(0, messagesEl.scrollHeight);
   }
-
-  // might use this later
-  // notifyChat(message: IMessage) {
-  //   const el = document.createElement('div');
-
-  //   el.appendChild(
-  //     document.createTextNode(message.username + ' ' + message.text)
-  //   );
-
-  //   const messagesEl = document.getElementById('messages') as HTMLDivElement;
-  //   messagesEl.appendChild(el);
-  //   messagesEl.scrollTo(0, messagesEl.scrollHeight);
-  // }
 
   setMessages(messages: IMessage[]) {
     const messagesEl = document.getElementById('messages') as HTMLDivElement;
@@ -117,7 +139,10 @@ export class ChatComponent implements OnInit {
   setUsers(usernames: string[]) {
     const usersEL = document.getElementById('users') as HTMLDivElement;
     usersEL.innerHTML = '';
-    usernames.forEach((username) => this.addUser(username));
+    usernames.forEach((username) => {
+      this.numOfUsers += 1;
+      this.addUser(username);
+    });
   }
 }
 export interface IUser {
@@ -127,4 +152,5 @@ export interface IUser {
 export interface IMessage {
   text: string;
   username: string;
+  timestamp: number;
 }
