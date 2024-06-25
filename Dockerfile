@@ -1,4 +1,4 @@
-FROM node:20.11.0 as build
+FROM node:latest as build
 
 WORKDIR /app
 
@@ -14,6 +14,8 @@ RUN ng build --configuration=production
 
 FROM nginx:latest
 
-COPY --from=build app/dist/talk-take-teach /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build app/dist/talk-take-teach/browser /usr/share/nginx/html
 
 EXPOSE 80
