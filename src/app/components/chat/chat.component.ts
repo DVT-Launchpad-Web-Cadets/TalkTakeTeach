@@ -69,26 +69,32 @@ export class ChatComponent implements OnInit {
 
     if (message.username == undefined) {
       const notificationEl = document.createElement('div');
-      notificationEl.classList.add('alert');
-      notificationEl.classList.add('alert-info');
-      notificationEl.classList.add('text-sm');
-      notificationEl.classList.add('p-1');
-      notificationEl.classList.add('m-1');
-      notificationEl.classList.add('w-2/3');
-      notificationEl.classList.add('self-center');
+      // notificationEl.classList.add('alert');
+      // notificationEl.classList.add('alert-info');
+      notificationEl.classList.add(
+        'text-sm',
+        'p-2',
+        'm-1',
+        'w-fit',
+        'text-center',
+        'bg-slate-300',
+        'flex',
+        'self-center',
+        'justify-center',
+        'rounded-full'
+      );
 
-      const notificationTextEl = document.createElement('span');
-      notificationTextEl.innerText = message.text;
-      notificationEl.appendChild(notificationTextEl);
+      // const notificationTextEl = document.createElement('span');
+      notificationEl.innerText = message.text;
+      // notificationEl.appendChild(notificationTextEl);
 
       messagesEl.appendChild(notificationEl);
     } else {
       const chatBubbleEl = document.createElement('div');
-      chatBubbleEl.classList.add('chat');
-      chatBubbleEl.classList.add('chat-start');
+      chatBubbleEl.classList.add('chat', 'chat-start', 'w-fit');
 
       const chatBubbleHeader = document.createElement('div');
-      chatBubbleHeader.classList.add('chat-header');
+      chatBubbleHeader.classList.add('chat-header', 'italic');
       chatBubbleHeader.innerText = message.username;
 
       const date = new Date(message.timestamp);
@@ -96,17 +102,24 @@ export class ChatComponent implements OnInit {
         .getMinutes()
         .toString()
         .padStart(2, '0')}`;
-      const timeEl = document.createElement('time');
+      const timeEl = document.createElement('div');
+      timeEl.classList.add('text-xs', 'font-light', 'self-end');
       timeEl.innerText = time;
 
       chatBubbleHeader.appendChild(timeEl);
 
-      const chatText = document.createElement('div');
-      chatText.classList.add('chat-bubble');
-      chatText.innerText = message.text;
+      const chatTextBox = document.createElement('div');
+      chatTextBox.classList.add(
+        'chat-bubble',
+        'flex',
+        'flex-col',
+        'min-w-[100px]'
+      );
+      chatTextBox.innerText = message.text;
+      chatTextBox.appendChild(timeEl);
 
       chatBubbleEl.appendChild(chatBubbleHeader);
-      chatBubbleEl.appendChild(chatText);
+      chatBubbleEl.appendChild(chatTextBox);
 
       messagesEl.appendChild(chatBubbleEl);
     }
