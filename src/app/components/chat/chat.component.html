@@ -11,7 +11,17 @@
 
   <div id="users"></div>
 </div>
-<form class="chat-box" id="form" (ngSubmit)="sendMessage()">
-  <input id="input" name="text" placeholder="Message" />
+<form
+  [formGroup]="messageForm"
+  class="chat-box"
+  id="form"
+  (ngSubmit)="sendMessage()"
+>
+  <input
+    id="input"
+    name="text"
+    placeholder="Message"
+    formControlName="message"
+  />
   <button type="submit">Submit</button>
 </form>

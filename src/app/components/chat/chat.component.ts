@@ -10,11 +10,12 @@ import {
 import { selectMessages } from '../../store/chats-store/chats.selectors';
 import MessageInterface from '../../interfaces/chats';
 import { ChatService } from '../../services/chat.service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss',
 })
@@ -26,6 +27,10 @@ export class ChatComponent implements OnInit {
   socket: WebSocket | undefined;
 
   clientID = crypto.randomUUID().toString();
+
+  messageForm = new FormGroup({
+    message: new FormControl(''),
+  });
 
   ngOnInit() {
     this.chatService.socket$.subscribe((socket) => {
@@ -42,11 +47,15 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    const input = document.getElementById('input') as HTMLInputElement;
-    const message: MessageInterface = {
-      messageText: input.value,
-      userId: this.clientID,
-    };
-    this.chatStore.dispatch(sendNewMessage({ message, uuid: this.clientID }));
+    const form = this.messageForm.getRawValue();
+    if (form.message) {
+      const message: MessageInterface = {
+        messageText: form.message,
+        userId: this.clientID,
+        timestampSent: new Date(Date.now()),
+      };
+      this.chatStore.dispatch(sendNewMessage({ message, uuid: this.clientID }));
+      this.messageForm.reset();
+    }
   }
 }
