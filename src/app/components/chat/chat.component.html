@@ -1,8 +1,17 @@
 <div class="chat-window">
-  <div id="messages"></div>
+  @if (messages$ | async; as messages) {
+  <div id="messages">
+    @for (message of messages; track $index) { @if (message.userId) {
+    <div>{{ message.userId }} : {{ message.messageText }}</div>
+    }@else {
+    <div>{{ message.messageText }}</div>
+    } }
+  </div>
+  }
+
   <div id="users"></div>
 </div>
-<form class="chat-box" id="form">
+<form class="chat-box" id="form" (ngSubmit)="sendMessage()">
   <input id="input" name="text" placeholder="Message" />
   <button type="submit">Submit</button>
 </form>

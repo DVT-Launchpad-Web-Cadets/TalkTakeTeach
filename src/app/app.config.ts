@@ -10,6 +10,8 @@ import {
   productsFeatureKey,
   productsReducer,
 } from './store/products-store/products.reducer';
+import { ChatEffects } from './store/chats-store/chats.effects';
+import { chatFeatureKey, chatReducer } from './store/chats-store/chats.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(),
     provideState({ name: productsFeatureKey, reducer: productsReducer }),
-    provideEffects(ProductsEffects),
+    provideState({ name: chatFeatureKey, reducer: chatReducer }),
+    provideEffects(ProductsEffects, ChatEffects),
   ],
 };
