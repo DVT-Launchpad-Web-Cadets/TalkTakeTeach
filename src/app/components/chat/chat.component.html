@@ -1,17 +1,36 @@
-<div class="chat-window">
+<div class="h-svh w-svw bg-slate-100 flex flex-col">
   @if (messages$ | async; as messages) {
-  <div id="messages">
+  <div
+    id="messages"
+    class="flex flex-col p-3 w-svw min-h-3.5 my-14 overflow-y-scroll overflow-x-hidden"
+  >
     @for (message of messages; track $index) { @if (message.userId) {
-    <div>{{ message.userId }} : {{ message.messageText }}</div>
+    <div class="chat chat-start w-fit">
+      <div class="chat-header italic">
+        {{ message.userId }}
+      </div>
+      <div class="chat-bubble flex flex-col min-w-[100px]">
+        {{ message.messageText }}
+        <div class="text-xs font-light self-end">
+          {{ getTime(message.timestampSent) }}
+        </div>
+      </div>
+    </div>
     }@else {
-    <div>{{ message.messageText }}</div>
+    <div
+      class="text-sm p-2 m-1 w-fit text-center bg-slate-300 flex self-center justify-center rounded-full"
+    >
+      {{ message.messageText }}
+    </div>
     } }
   </div>
   }
-
-  <div id="users"></div>
+  <form
+    class="flex flex-row justify-between items-center w-11/12 h-12 fixed bottom-0 m-3 p-2 bg-white rounded-lg"
+    id="form"
+    (ngSubmit)="sendMessage()"
+  >
+    <input class="w-5/6" id="input" name="text" placeholder="Message" />
+    <button class="text-blue-500 w-1/6" type="submit">Send</button>
+  </form>
 </div>
-<form class="chat-box" id="form" (ngSubmit)="sendMessage()">
-  <input id="input" name="text" placeholder="Message" />
-  <button type="submit">Submit</button>
-</form>

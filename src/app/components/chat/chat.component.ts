@@ -40,4 +40,18 @@ export class ChatComponent implements OnInit {
     };
     this.chatStore.dispatch(sendNewMessage({ message }));
   }
+
+  getTime(timestamp: number | undefined) {
+    let date: Date;
+    if (timestamp) {
+      date = new Date(timestamp);
+    } else {
+      date = new Date(Date.now());
+    }
+    const time = `${date.getHours().toString().padStart(2, '0')}:${date
+      .getMinutes()
+      .toString()
+      .padStart(2, '0')}`;
+    return time;
+  }
 }
