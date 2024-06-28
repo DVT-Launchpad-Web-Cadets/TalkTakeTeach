@@ -16,13 +16,13 @@
         </div>
       </div>
     </div>
-    }@else {
+    }@else { @if (message.messageText) {
     <div
       class="text-sm p-2 m-1 w-fit text-center bg-slate-300 flex self-center justify-center rounded-full"
     >
       {{ message.messageText }}
     </div>
-    } }
+    } } }
   </div>
   }
   <form
