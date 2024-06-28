@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import MessageInterface from '../interfaces/chats';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,6 +8,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ChatService {
   private url = 'localhost:3000/chat';
+  private socket = new BehaviorSubject<WebSocket | undefined>(undefined);
+  socket$ = this.socket.asObservable();
+
+  initaliseSocket(webSocket: WebSocket) {
+    this.socket.next(webSocket);
+  }
 
   constructor(private http: HttpClient) {}
 
