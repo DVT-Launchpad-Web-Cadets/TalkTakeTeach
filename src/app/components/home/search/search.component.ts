@@ -1,10 +1,13 @@
 import { AsyncPipe, NgIf } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import ProductInterface from '../../../interfaces/products';
 import { ProductsService } from '../../../services/products.service';
+import { searchProducts } from '../../../store/products-store/products.actions';
+import { SelectProducts } from '../../../store/products-store/products.selectors';
 import { ProductResultsComponent } from '../product-results/product-results.component';
 
 @Component({
@@ -22,6 +25,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   searchForm = this.fb.nonNullable.group({
     searchValue: '',
   });
+  allProducts$ = this.store.select(SelectProducts);
 
   trigger = this.searchForm.controls.searchValue.valueChanges.pipe(
     debounceTime(this.debounceTime),
@@ -32,7 +36,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private productsService: ProductsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -48,22 +53,19 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    //this is what we use for the actual API call
-    // this.productsService
-    //   .getProducts(this.searchValue)
-    //   .subscribe((productsData) => {
-    //     this.products = productsData;
-    //   });
+    this.store.dispatch(searchProducts({ searchValue: this.searchValue }));
 
-    const prodSub = this.productsService
-      .getProducts(this.searchValue)
-      .subscribe((productsData) => {
-        this.products = productsData.filter((product) =>
+    //this is ugly, remember to remove once backend endpoint is established
+    console.warn(
+      'Remember you have a useless filter function in search.component.ts that needs to be removed.'
+    );
+    this.allProducts$ = this.allProducts$.pipe(
+      map((products) =>
+        products.filter((product) =>
           product.name.toLowerCase().includes(this.searchValue.toLowerCase())
-        );
-      });
-
-    this.subscriptions.push(prodSub);
+        )
+      )
+    );
   }
 
   clearInput() {
