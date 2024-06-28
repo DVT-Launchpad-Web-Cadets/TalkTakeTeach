@@ -56,6 +56,9 @@ export class ChatComponent implements OnInit {
       };
       this.chatStore.dispatch(sendNewMessage({ message }));
       this.messageForm.reset();
+
+      const messagesEl = document.getElementById('messages') as HTMLDivElement;
+      messagesEl.scrollTo(0, messagesEl.scrollHeight);
     }
   }
 
