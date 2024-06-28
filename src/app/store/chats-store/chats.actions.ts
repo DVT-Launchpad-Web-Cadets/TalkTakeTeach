@@ -15,7 +15,7 @@ export const getOldMessagesFailure = createAction(
 
 export const sendNewMessage = createAction(
   '[Chat Component] Send new message',
-  props<{ message: MessageInterface }>()
+  props<{ message: MessageInterface; uuid: string }>()
 );
 
 export const handleNewMessage = createAction(

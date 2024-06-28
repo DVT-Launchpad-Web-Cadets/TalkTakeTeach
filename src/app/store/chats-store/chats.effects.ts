@@ -31,7 +31,7 @@ export class ChatEffects {
         ofType(sendNewMessage),
         switchMap((action) =>
           this.chatService
-            .sendNewMessage(action.message)
+            .sendNewMessage(action.message, action.uuid)
             .pipe(catchError((error) => of(getOldMessagesFailure({ error }))))
         )
       ),

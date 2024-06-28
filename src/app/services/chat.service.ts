@@ -21,7 +21,9 @@ export class ChatService {
     return this.http.get<MessageInterface[]>(this.url);
   }
 
-  sendNewMessage(message: MessageInterface): Observable<void> {
-    return this.http.post<void>(this.url, message);
+  sendNewMessage(message: MessageInterface, uuid: string): Observable<void> {
+    return this.http.post<void>(this.url, message, {
+      headers: { userId: uuid },
+    });
   }
 }

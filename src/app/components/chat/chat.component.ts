@@ -25,6 +25,8 @@ export class ChatComponent implements OnInit {
   chatService: ChatService = inject(ChatService);
   socket: WebSocket | undefined;
 
+  clientID = crypto.randomUUID().toString();
+
   ngOnInit() {
     this.chatService.socket$.subscribe((socket) => {
       this.socket = socket;
@@ -43,7 +45,8 @@ export class ChatComponent implements OnInit {
     const input = document.getElementById('input') as HTMLInputElement;
     const message: MessageInterface = {
       messageText: input.value,
+      userId: this.clientID,
     };
-    this.chatStore.dispatch(sendNewMessage({ message }));
+    this.chatStore.dispatch(sendNewMessage({ message, uuid: this.clientID }));
   }
 }
