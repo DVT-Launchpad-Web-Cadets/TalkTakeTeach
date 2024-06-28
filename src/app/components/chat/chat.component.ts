@@ -9,7 +9,7 @@ import {
 } from '../../store/chats-store/chats.actions';
 import { selectMessages } from '../../store/chats-store/chats.selectors';
 import MessageInterface from '../../interfaces/chats';
-import { socket } from '../../app.component';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -22,10 +22,16 @@ export class ChatComponent implements OnInit {
   chatStore: Store<ChatState> = inject(Store);
   messages$ = this.chatStore.select(selectMessages);
 
+  chatService: ChatService = inject(ChatService);
+  socket: WebSocket | undefined;
+
   ngOnInit() {
+    this.chatService.socket$.subscribe((socket) => {
+      this.socket = socket;
+    });
     this.chatStore.dispatch(getOldMessages());
-    if (socket) {
-      socket.onmessage = (e) => {
+    if (this.socket) {
+      this.socket.onmessage = (e) => {
         const event = JSON.parse(e.data.toString());
         const newMessage: MessageInterface = event.data;
         this.chatStore.dispatch(handleNewMessage({ message: newMessage }));
