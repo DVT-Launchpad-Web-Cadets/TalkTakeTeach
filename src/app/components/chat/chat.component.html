@@ -7,7 +7,7 @@
     @for (message of messages; track $index) { @if (message.userId) {
     <div class="chat chat-start w-fit">
       <div class="chat-header italic">
-        {{ message.userId }}
+        {{ truncateUser(message.userId) }}
       </div>
       <div class="chat-bubble flex flex-col min-w-[100px]">
         {{ message.messageText }}
@@ -26,11 +26,18 @@
   </div>
   }
   <form
+    [formGroup]="messageForm"
     class="flex flex-row justify-between items-center w-11/12 h-12 fixed bottom-0 m-3 p-2 bg-white rounded-lg"
     id="form"
     (ngSubmit)="sendMessage()"
   >
-    <input class="w-5/6" id="input" name="text" placeholder="Message" />
+    <input
+      class="w-5/6"
+      id="input"
+      name="text"
+      placeholder="Message"
+      formControlName="message"
+    />
     <i class="material-icons text-blue-500" role="button" type="submit">send</i>
   </form>
 </div>
