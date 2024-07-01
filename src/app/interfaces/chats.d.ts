@@ -1,6 +1,7 @@
 export default interface MessageInterface {
-  userId?: string;
+  userId: string;
   messageText: string;
-  timestampSent?: Date;
+  timestampSent: Date;
   sessionState?: string;
+  timeSent?: string;
 }

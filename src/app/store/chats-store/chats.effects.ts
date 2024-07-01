@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap } from 'rxjs';
+import { EMPTY, catchError, map, switchMap } from 'rxjs';
 import { ChatService } from '../../services/chat.service';
 import {
   getOldMessages,
   getOldMessagesComplete,
-  getOldMessagesFailure,
   sendNewMessage,
 } from './chats.actions';
 
@@ -19,7 +18,10 @@ export class ChatEffects {
           map((messages) => {
             return getOldMessagesComplete({ messages });
           }),
-          catchError((error) => of(getOldMessagesFailure({ error })))
+          catchError((error) => {
+            console.error('Error retrieving the message', error);
+            return EMPTY;
+          })
         )
       )
     )
@@ -30,9 +32,12 @@ export class ChatEffects {
       this.actions$.pipe(
         ofType(sendNewMessage),
         switchMap((action) =>
-          this.chatService
-            .sendNewMessage(action.message)
-            .pipe(catchError((error) => of(getOldMessagesFailure({ error }))))
+          this.chatService.sendNewMessage(action.message).pipe(
+            catchError((error) => {
+              console.error('Error sending message', error);
+              return EMPTY;
+            })
+          )
         )
       ),
     { dispatch: false }

@@ -1,28 +1,31 @@
 <div class="h-svh w-svw bg-slate-100 flex flex-col">
   @if (messages$ | async; as messages) {
   <div
-    id="messages"
+    #messagesView
+    [scrollTop]="messagesView.scrollHeight"
     class="flex flex-col p-3 w-svw min-h-3.5 my-14 overflow-y-scroll overflow-x-hidden"
   >
-    @for (message of messages; track $index) { @if (message.userId) {
+    @for (message of messages; track message) {
+    <!-- no userId, display as notification -->
+    @if (message.userId) {
     <div class="chat chat-start w-fit">
       <div class="chat-header italic">
-        {{ truncateUser(message.userId) }}
+        {{ message.userId }}
       </div>
       <div class="chat-bubble flex flex-col min-w-[100px]">
         {{ message.messageText }}
         <div class="text-xs font-light self-end">
-          {{ getTime(message.timestampSent) }}
+          {{ message.timeSent }}
         </div>
       </div>
     </div>
-    }@else { @if (message.messageText) {
+    }@else if (message.messageText) {
     <div
       class="text-sm p-2 m-1 w-fit text-center bg-slate-300 flex self-center justify-center rounded-full"
     >
       {{ message.messageText }}
     </div>
-    } } }
+    } }
   </div>
   }
   <form
@@ -32,13 +35,13 @@
     (ngSubmit)="sendMessage()"
   >
     <input
-      class="w-5/6"
+      class="w-calc-100-minus-30"
       id="input"
       name="text"
       placeholder="Message"
       formControlName="message"
     />
-    <button>
+    <button class="inline-flex items-center justify-center">
       <i class="material-icons text-blue-500" role="button" type="submit"
         >send</i
       >
