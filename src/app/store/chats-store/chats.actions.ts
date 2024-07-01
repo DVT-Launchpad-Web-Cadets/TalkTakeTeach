@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import MessageInterface from '../../interfaces/chats';
 
-export const getOldMessages = createAction('[Chat Component] Get all messages');
+export const getOldMessages = createAction('[Chat] Get all messages');
 
 export const getOldMessagesComplete = createAction(
   '[Chat] Get all messages complete',
