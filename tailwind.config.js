@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      width: {
+        "calc-100-minus-30": "calc(100% - 30px)",
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {

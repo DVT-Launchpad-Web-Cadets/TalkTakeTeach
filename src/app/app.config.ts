@@ -1,4 +1,4 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
@@ -10,14 +10,17 @@ import {
   productsFeatureKey,
   productsReducer,
 } from './store/products-store/products.reducer';
+import { ChatEffects } from './store/chats-store/chats.effects';
+import { chatFeatureKey, chatReducer } from './store/chats-store/chats.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideStore(),
     provideState({ name: productsFeatureKey, reducer: productsReducer }),
-    provideEffects(ProductsEffects),
+    provideState({ name: chatFeatureKey, reducer: chatReducer }),
+    provideEffects(ProductsEffects, ChatEffects),
   ],
 };
