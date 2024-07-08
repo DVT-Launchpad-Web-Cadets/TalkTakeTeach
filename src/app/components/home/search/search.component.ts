@@ -54,18 +54,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   fetchData() {
     this.store.dispatch(searchProducts({ searchValue: this.searchValue }));
-
-    //this is ugly, remember to remove once backend endpoint is established
-    console.warn(
-      'Remember you have a useless filter function in search.component.ts that needs to be removed.'
-    );
-    this.allProducts$ = this.allProducts$.pipe(
-      map((products) =>
-        products.filter((product) =>
-          product.name.toLowerCase().includes(this.searchValue.toLowerCase())
-        )
-      )
-    );
   }
 
   clearInput() {
