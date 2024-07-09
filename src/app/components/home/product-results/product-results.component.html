@@ -1,10 +1,10 @@
 <div class="h-full px-5 lg:flex justify-center">
-  <div class="lg:max-w-[50%] grid grid-cols-2 gap-5">
+  <div class="lg:max-w-[50%] grid grid-cols-1 md:grid-cols-2 gap-5">
     @for (product of products; track product.id) {
     <div class="rounded-xl border border-gray-300 max-h-[335px]">
       <div class="h-1/2 flex justify-center relative">
         @if (product.rating){
-        <div class="absolute right-2 top-2">
+        <div class="absolute right-2 top-2 -z-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
@@ -34,7 +34,7 @@
         <img
           ngSrc="{{ product.imageUrl || 'https://via.placeholder.com/150' }}"
           alt="product"
-          class="h-full w-auto object-cover rounded-xl"
+          class="h-full w-auto object-cover rounded-xl -z-10"
           width="150"
           height="150"
         />
