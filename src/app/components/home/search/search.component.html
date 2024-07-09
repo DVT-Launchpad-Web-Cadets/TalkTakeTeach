@@ -1,6 +1,6 @@
-<form [formGroup]="searchForm" class="w-full z-10 flex justify-center fixed top-10 sm:top-16 py-3 sm:py-2 bg-gray-700 sm:bg-white">
+<form [formGroup]="searchForm" class="w-full z-10 flex justify-center fixed top-16 py-3 sm:py-2 sm:bg-white">
   <label
-    class="input input-bordered rounded-full flex items-center gap-2 w-full sm:w-1/2 mx-5 relative bg-white sm:bg-gray-200"
+    class="input input-bordered rounded-full flex items-center gap-2 w-full sm:w-1/2 mx-5 relative bg-gray-200"
   >
     <input
       type="text"
@@ -40,6 +40,6 @@
     }
   </label>
 </form>
-<div class="mt-28 sm:mt-32 sm:mb-5">
+<div class="mt-32 sm:mb-5">
   <app-product-results [products]="(allProducts$ | async) ?? []" />
 </div>
